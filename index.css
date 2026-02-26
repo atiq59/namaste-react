@@ -18,8 +18,13 @@
     padding: 0 20px;
 }
 
-.search {
+.filter {
+    display: flex;
     padding: 10px;
+}
+
+.filter-btn {
+    margin-left: 10px;
 }
 
 .restro-card {
@@ -34,7 +39,7 @@
 .restro-container {
     display: flex;
     flex-wrap: wrap;
-    gap: 20px;
+    gap: 15px;
     padding: 20px;
 }
 
@@ -43,4 +48,19 @@
     height: 120px;
     object-fit: cover;
     border-radius: 5px;
+}
+
+.shimmer-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px;
+    padding: 20px;
+}
+
+.shimmer-card {
+    width: 300px;
+    height: 400px;
+    background-color: #e0e0e0;
+    border-radius: 5px;
+    animation: shimmer 1.5s infinite linear;
 }
