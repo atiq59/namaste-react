@@ -14,13 +14,12 @@ const Body = () => {
 
   const fetchData = async () => {
     const res = await fetch(
-      "https://www.swiggy.com/dapi/restaurants/list/v5?lat=28.5682138&lng=77.2861119&collection=83639&tags=layout_CCS_Biryani&sortBy=&filters=&type=rcv2&offset=0&page_type=null",
+      "https://corsproxy.io/?https://www.swiggy.com/dapi/restaurants/list/v5?lat=28.5682138&lng=77.2861119&is-seo-homepage-enabled=true&page_type=DESKTOP_WEB_LISTING",
     );
     const json = await res.json();
-    const data = json.data?.cards.filter((val) => val.card.card.info);
-
-    setListOfRestro(data);
-    setFilteredListOfRestro(data);
+    console.log(json)
+    setListOfRestro(json?.data?.cards[4]?.card?.card?.gridElements?.infoWithStyle?.restaurants);
+    setFilteredListOfRestro(json?.data?.cards[4]?.card?.card?.gridElements?.infoWithStyle?.restaurants);
   };
 
   return listOfRestro.length === 0 ? (
@@ -31,7 +30,7 @@ const Body = () => {
         <div className="search">
             <input type="text" value={search} onChange={(e) => setSearch(e.target.value)} />
             <button onClick={() => {
-                const filter = listOfRestro.filter((val) => val.card?.card?.info.name.toLowerCase().includes(search.toLowerCase()))
+                const filter = listOfRestro.filter((val) => val?.info.name.toLowerCase().includes(search.toLowerCase()))
                 setFilteredListOfRestro(filter)
             }}>Search</button>
         </div>
@@ -39,7 +38,7 @@ const Body = () => {
           className="filter-btn"
           onClick={() => {
             const filtered = filteredListOfRestro.filter(
-              (res) => res.card?.card?.info?.avgRating > 4,
+              (res) => res?.info?.avgRating > 4,
             );
             setFilteredListOfRestro(filtered);
           }}
@@ -50,8 +49,8 @@ const Body = () => {
       <div className="restro-container">
         {filteredListOfRestro.map((restro) => (
           <RestaurantCard
-            key={restro?.card?.card?.info?.id}
-            resData={restro.card?.card?.info}
+            key={restro?.info?.id}
+            resData={restro?.info}
           />
         ))}
       </div>
