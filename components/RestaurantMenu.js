@@ -1,36 +1,14 @@
 import React, { useEffect } from "react";
 import { useParams } from "react-router-dom";
+import { MENU_URL } from "../utils/constant";
+import useRestrauntMenu from "../utils/useRestrauntMenu";
 
 const RestaurantMenu = () => {
     const {resId} = useParams();
-  const fetchMenu = async () => {
-    try {
-      const baseUrl = "https://www.swiggy.com/dapi/menu/pl";
 
-      const params = new URLSearchParams({
-        "page-type": "REGULAR_MENU",
-        "complete-menu": "true",
-        lat: "28.5682138",
-        lng: "77.2861119",
-        restaurantId: "353992",
-        catalog_qa: "undefined",
-        submitAction: "ENTER",
-      });
+    const resInfo = useRestrauntMenu(1);
 
-      const res = await fetch("https://www.swiggy.com/dapi/menu/pl?page-type=REGULAR_MENU&complete-menu=true&lat=12.9715987&lng=77.5945627&restaurantId=" + resId);
-
-      console.log("status:", res.status);
-
-      const data = await res.json();
-      console.log(data);
-    } catch (err) {
-      console.error("Fetch error:", err);
-    }
-  };
-
-  useEffect(() => {
-    fetchMenu();
-  }, []);
+    console.log("resInfo", resInfo)
 
   return (
     <div className="menu">
