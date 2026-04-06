@@ -8,15 +8,13 @@ const Header = () => {
   const onlineStatus = useOnlineStatus();
   return (
     <div>
-      <div className="header">
-        <div className="logo-container">
+      <div className="flex justify-between items-center border border-black border-solid">
           <img
-            className="logo"
+            className="w-32"
             src={LOGO_URL}
           />
-        </div>
         <div className="nav-items">
-          <ul>
+          <ul className="flex p-4 m-4 gap-5 text-xl">
             <li>Online: {onlineStatus ? "🟢" : "🔴"}</li>
             <li>
               <Link to="/">Home</Link>

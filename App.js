@@ -1,15 +1,16 @@
 import { lazy, Suspense } from "react";
 import ReactDOM from "react-dom/client";
-import Header from "./components/Header";
+import Header from "./src/components/Header";
 import { createBrowserRouter, RouterProvider, Outlet } from "react-router-dom";
-import Error from "./components/Error";
-import Shimmer from "./components/Shimmer";
+import Error from "./src/components/Error";
+import Shimmer from "./src/components/Shimmer";
+import Body from "./src/components/Body";
 
-const Body = lazy(() => import("./components/Body"));
-const About = lazy(() => import("./components/About"));
-const Contact = lazy(() => import("./components/Contact"));
-const RestaurantMenu = lazy(() => import("./components/RestaurantMenu"));
-const Grocery = lazy(() => import("./components/Grocery"));
+// const Body = lazy(() => import("./src/components/Body"));
+const About = lazy(() => import("./src/components/About"));
+const Contact = lazy(() => import("./src/components/Contact"));
+const RestaurantMenu = lazy(() => import("./src/components/RestaurantMenu"));
+const Grocery = lazy(() => import("./src/components/Grocery"));
 
 const AppLayout = () => (
   <div className="app">
@@ -27,9 +28,9 @@ const appRouter = createBrowserRouter([
       {
         path: "/",
         element: (
-          <Suspense fallback={<Shimmer />}>
+          // <Suspense fallback={<Shimmer />}>
             <Body />
-          </Suspense>
+          // </Suspense>
         ),
       },
       {
