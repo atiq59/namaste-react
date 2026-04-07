@@ -29,7 +29,6 @@ const useRestraunt = () => {
     setFilteredRestraunts(filtered);
   };
 
-  // ⭐ Top rated filter
   const filterTopRated = () => {
     const filtered = restraunts.filter((res) => res?.info?.avgRating > 4);
     setFilteredRestraunts(filtered);

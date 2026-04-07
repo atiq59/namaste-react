@@ -1,25 +1,23 @@
-import React, { useEffect } from "react";
-import { useParams } from "react-router-dom";
-import { MENU_URL } from "../utils/constant";
-import useRestrauntMenu from "../utils/useRestrauntMenu";
+import { useState } from "react";
+import restrauntMenu from "../utils/mockData";
+import MenuCard from "./MenuCard";
 
 const RestaurantMenu = () => {
-    const {resId} = useParams();
-
-    const resInfo = useRestrauntMenu(1);
-
-    console.log("resInfo", resInfo)
-
+  const [showIndex, setShowIndex] = useState(null);
   return (
-    <div className="menu">
-      <h1>Name of the Restaurant</h1>
-      <h2>Menu</h2>
-      <ul>
-        <li>Biryani</li>
-        <li>Burger</li>
-        <li>Cold Drink</li>
-      </ul>
-    </div>
+    <>
+      <div className="text-center my-4 font-bold text-2xl">
+        Amma's Haus - by Asian Haus
+      </div>
+      {restrauntMenu.cards.map((menu, i) => (
+        <MenuCard
+          key={i}
+          menu={menu.card.card}
+          showIndex={i === showIndex ? true : false}
+          setShowIndex={() => setShowIndex((prev) => prev === i ? null : i)}
+        />
+      ))}
+    </>
   );
 };
 
