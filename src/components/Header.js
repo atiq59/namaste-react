@@ -2,8 +2,7 @@ import { useContext, useState } from "react";
 import { LOGO_URL } from "../utils/constant";
 import { Link } from "react-router-dom";
 import useOnlineStatus from "../utils/useOnlineStatus";
-import UserContext from "../utils/UserContext";
-import AppProvider from "./AppProvider";
+import UserContext from "../utils/UserContext.js";
 
 const Header = () => {
   const [btnName, setBtnName] = useState("Login");

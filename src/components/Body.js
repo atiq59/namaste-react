@@ -1,12 +1,14 @@
-import { useState } from "react";
+import React, { useContext, useState } from "react";
 import RestaurantCard, { isOpenRestaurant } from "./RestaurantCard";
 import Shimmer from "./Shimmer";
 import { Link } from "react-router-dom";
 import useRestraunt from "../utils/useRestraunt";
+import UserContext from "../utils/UserContext.js";
 
 const Body = () => {
   const [search, setSearch] = useState("");
   const {restraunts, filteredRestraunts, searchRestaurants, filterTopRated} = useRestraunt();
+  const { userName, setUserName } = useContext(UserContext)
 
   console.log(filteredRestraunts)
   const IsOpenRestaurantCard = isOpenRestaurant(RestaurantCard);
@@ -36,6 +38,12 @@ const Body = () => {
         >
           Top Rated Restaurant
         </button>
+        <input
+            type="text"
+            className="border border-solid border-black px-3"
+            value={userName}
+            onChange={(e) => setUserName(e.target.value)}
+          />
       </div>
       <div className="flex flex-wrap gap-2 p-3 items-center">
         {filteredRestraunts.map((restro) => (

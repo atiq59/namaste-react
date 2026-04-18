@@ -1,8 +1,8 @@
 import { useState } from "react";
-import UserContext from "../utils/UserContext";
+import UserContext from "../utils/UserContext.js";
 
 const AppProvider = ({children}) => {
-    const [userName, setUserName] = useState("Default Userrrr")
+    const [userName, setUserName] = useState("Atiq Shahab")
 
     return (
         <UserContext.Provider value={{userName, setUserName}}>

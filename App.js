@@ -5,7 +5,6 @@ import { createBrowserRouter, RouterProvider, Outlet } from "react-router-dom";
 import Error from "./src/components/Error";
 import Shimmer from "./src/components/Shimmer";
 import Body from "./src/components/Body";
-import UserContext from "./src/utils/UserContext";
 import AppProvider from "./src/components/AppProvider";
 
 // const Body = lazy(() => import("./src/components/Body"));
