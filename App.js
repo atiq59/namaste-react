@@ -1,10 +1,12 @@
-import { lazy, Suspense } from "react";
+import { lazy, Suspense, useContext } from "react";
 import ReactDOM from "react-dom/client";
 import Header from "./src/components/Header";
 import { createBrowserRouter, RouterProvider, Outlet } from "react-router-dom";
 import Error from "./src/components/Error";
 import Shimmer from "./src/components/Shimmer";
 import Body from "./src/components/Body";
+import UserContext from "./src/utils/UserContext";
+import AppProvider from "./src/components/AppProvider";
 
 // const Body = lazy(() => import("./src/components/Body"));
 const About = lazy(() => import("./src/components/About"));
@@ -13,10 +15,13 @@ const RestaurantMenu = lazy(() => import("./src/components/RestaurantMenu"));
 const Grocery = lazy(() => import("./src/components/Grocery"));
 
 const AppLayout = () => (
-  <div className="app">
-    <Header />
-    <Outlet />
-  </div>
+
+  <AppProvider >
+    <div className="app">
+      <Header />
+      <Outlet />
+    </div>
+  </AppProvider>
 );
 
 const appRouter = createBrowserRouter([
