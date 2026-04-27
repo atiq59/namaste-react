@@ -6,21 +6,26 @@ import Error from "./src/components/Error";
 import Shimmer from "./src/components/Shimmer";
 import Body from "./src/components/Body";
 import AppProvider from "./src/components/AppProvider";
+import { Provider } from "react-redux";
+import appStore from "./src/utils/appStore.js";
 
 // const Body = lazy(() => import("./src/components/Body"));
 const About = lazy(() => import("./src/components/About"));
 const Contact = lazy(() => import("./src/components/Contact"));
-const RestaurantMenu = lazy(() => import("./src/components/RestaurantMenu"));
+const RestaurantMenu = lazy(() => import("./src/components/RestaurantMenu.js"));
 const Grocery = lazy(() => import("./src/components/Grocery"));
+const Cart = lazy(() => import("./src/components/Cart.js"));
 
 const AppLayout = () => (
 
-  <AppProvider >
-    <div className="app">
-      <Header />
-      <Outlet />
-    </div>
-  </AppProvider>
+  <Provider store={appStore}>
+    <AppProvider >
+      <div className="app">
+        <Header />
+        <Outlet />
+      </div>
+    </AppProvider>
+  </Provider>
 );
 
 const appRouter = createBrowserRouter([
@@ -69,6 +74,14 @@ const appRouter = createBrowserRouter([
           </Suspense>
         ),
       },
+      {
+        path: "/cart",
+        element: (
+          <Suspense fallback={<Shimmer />}>
+            <Cart />
+          </Suspense>
+        )
+      }
     ],
   },
 ]);

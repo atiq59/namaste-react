@@ -3,18 +3,19 @@ import { LOGO_URL } from "../utils/constant";
 import { Link } from "react-router-dom";
 import useOnlineStatus from "../utils/useOnlineStatus";
 import UserContext from "../utils/UserContext.js";
+import { useSelector } from "react-redux";
 
 const Header = () => {
   const [btnName, setBtnName] = useState("Login");
   const onlineStatus = useOnlineStatus();
-  const { userName } = useContext(UserContext)
+  const { userName } = useContext(UserContext);
+  const cartItems = useSelector((store) => store.cart.items || []);
+  console.log(cartItems);
+
   return (
     <div>
       <div className="flex justify-between items-center border border-black border-solid">
-          <img
-            className="w-32"
-            src={LOGO_URL}
-          />
+        <img className="w-32" src={LOGO_URL} />
         <div className="nav-items">
           <ul className="flex p-4 m-4 gap-5 text-xl">
             <li>Online: {onlineStatus ? "🟢" : "🔴"}</li>
@@ -30,11 +31,18 @@ const Header = () => {
             <li>
               <Link to="/grocery">Grocery</Link>
             </li>
-            <li>Cart</li>
-            <button style={{cursor: "pointer"}} onClick={() => {
-              setBtnName((prev) => prev === 'Login' ? 'Logout' : 'Login')
-            }}>{btnName}</button>
-            <div className="text-lg font-bold">{userName}</div>
+            <li className="font-bold text-xl">
+              <Link to="/cart">Cart ({cartItems.length})</Link>
+            </li>
+            <button
+              style={{ cursor: "pointer" }}
+              onClick={() => {
+                setBtnName((prev) => (prev === "Login" ? "Logout" : "Login"));
+              }}
+            >
+              {btnName}
+            </button>
+            <div className="text-lg">{userName}</div>
           </ul>
         </div>
       </div>
