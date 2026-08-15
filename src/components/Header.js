@@ -15,7 +15,7 @@ const Header = () => {
   return (
     <div>
       <div className="flex justify-between items-center border border-black border-solid">
-        <img className="w-32" src={LOGO_URL} />
+        <img className="w-32" src={LOGO_URL} alt="logo" />
         <div className="nav-items">
           <ul className="flex p-4 m-4 gap-5 text-xl">
             <li>Online: {onlineStatus ? "🟢" : "🔴"}</li>
